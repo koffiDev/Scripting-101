@@ -10,8 +10,7 @@ for row in $(echo "${databases}" | jq -c '.[]'); do
     database_status=$(echo "${row}" | jq -r '.status')
 
     if [ "${database_status}" = "failed" ]; then
-        echo "Deleting database with ID: ${database_name}"
+        echo "Deleting database with label: ${database_name}"
         linode-cli databases postgresql-delete "${database_id}"
     fi
 done
-
